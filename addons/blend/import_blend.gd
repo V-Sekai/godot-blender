@@ -37,32 +37,27 @@ func _import_scene(path: String, flags: int, bake_fps: int):
 	var output_path_global = ProjectSettings.globalize_path(output_path)
 	var stdout = [].duplicate()
 	var addon_path: String = "blender"
-	var dir = Directory.new()
-	var temp_dir_global =  output_path_global + "_textures"
-	dir.make_dir(temp_dir_global)
-	var script : String = """import bpy;\
+	var script : String = """--python-expr \"import bpy;\
 import os;\
 import sys;\
 filename = 'GODOT_FILENAME';\
 bpy.ops.wm.open_mainfile(filepath=filename);\
 export_path = 'GODOT_EXPORT_PATH';\
-export_texture_dir = 'GODOT_TMP_PATH';\
 bpy.ops.export_scene.gltf(\
-	filepath=export_path,\
-	export_format='GLB',\
-	export_texture_dir=export_texture_dir,\
-	export_colors=True,\
-	export_all_influences=True,\
-	export_extras=True,\
-	export_cameras=True,\
-	export_lights=True);"""
+filepath=export_path,\
+export_format='GLB',\
+export_colors=True,\
+export_all_influences=True,\
+export_extras=True,\
+export_cameras=True,\
+export_lights=True);\""""
 	script = script.replace("GODOT_FILENAME", path_global)
 	script = script.replace("GODOT_EXPORT_PATH", output_path_global)
-	script = script.replace("GODOT_TMP_PATH", temp_dir_global)
 	var args = [
+		addon_path,
 		"--background",
-		"--python-expr \"GODOT_SCRIPT\"".replace("GODOT_SCRIPT", script)]
-	var ret = OS.execute(addon_path, args, stdout, true)
+		script]
+	var ret = OS.execute("blender", args, stdout, true)
 	print(args)
 	for line in stdout:
 		print(line)
