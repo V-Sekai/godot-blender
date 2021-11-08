@@ -63,11 +63,19 @@ func _import_scene(path: String, flags: int, bake_fps: int):
 	dir.make_dir(tex_dir_global)
 	script = script.replace("GODOT_TEXTURE_PATH", tex_dir_global)	
 	script = addon_path_global + " --background --python-expr \\\"" + script + "\\\""
+	
+	var shell = "sh"
+	var execute_string = "-c"
+	
+	if OS.get_name() == "Windows":
+		shell = "cmd.exe"
+		execute_string = "\\C"
+	
 	var args = [
-		"-c",
+		execute_string,
 		script]
 	print(args)
-	var ret = OS.execute("sh", args, stdout, true)
+	var ret = OS.execute(shell, args, stdout, true)
 	for line in stdout:
 		print(line)
 	if ret != 0:
