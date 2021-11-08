@@ -1,0 +1,49 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+[application]
+
+config/name="Blender Game Project"
+config/icon="res://icon.png"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/blend/plugin.cfg")
+
+[filesystem]
+
+import/fbx/use_fbx=false
+
+[importer_defaults]
+
+scene={
+"_subresources": {
+},
+"animation/fps": 30.0,
+"animation/import": true,
+"import_script/path": "",
+"meshes/create_shadow_meshes": true,
+"meshes/ensure_tangents": true,
+"meshes/generate_lods": true,
+"meshes/light_baking": 2,
+"meshes/lightmap_texel_size": 0.1,
+"nodes/root_name": "Scene Root",
+"nodes/root_scale": 1.0,
+"nodes/root_type": "Node3D",
+"skins/use_named_skins": true
+}
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"
