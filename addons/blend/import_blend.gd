@@ -51,7 +51,7 @@ func _import_scene(path: String, flags: int, bake_fps: int):
 	print_verbose(args)
 	var ret = OS.execute("sh", args, stdout, true)
 	for line in stdout:
-		print_verbose(line)
+		print(line)
 	if ret != 0:
 		print("Blender returned " + str(ret))
 		return null
