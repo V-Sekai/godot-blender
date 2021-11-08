@@ -23,7 +23,7 @@
 @tool
 extends EditorSceneFormatImporter
 
-const settings_blender_path = "filesystem/import/blend/path"
+const settings_blender_path = "filesystem/import/blend/blender_path"
 
 var blender_path : String
 
@@ -43,6 +43,7 @@ func _get_import_flags():
 
 
 func _import_scene(path: String, flags: int, bake_fps: int):
+	_init()
 	var path_global : String = ProjectSettings.globalize_path(path)
 	path_global = path_global.c_escape()
 	var output_path : String = "res://.godot/imported/" + path.get_file().get_basename() + "-" + path.md5_text() + ".glb"
