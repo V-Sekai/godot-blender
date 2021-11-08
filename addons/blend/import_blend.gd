@@ -33,31 +33,23 @@ func _get_import_flags():
 
 func _import_scene(path: String, flags: int, bake_fps: int):
 	var path_global : String = ProjectSettings.globalize_path(path)
-	var output_path : String = "res://.godot/imported/" + path.get_file().get_basename() + "-" + path.md5_text() + ".glb" 
+	path_global = path_global.c_escape()
+	var output_path : String = "res://.godot/imported/" + path.get_file().get_basename() + "-" + path.md5_text() + ".glb"
 	var output_path_global = ProjectSettings.globalize_path(output_path)
+	output_path_global = output_path_global.c_escape()
 	var stdout = [].duplicate()
 	var addon_path: String = "blender"
-	var script : String = """--python-expr \"import bpy;\
-import os;\
-import sys;\
-filename = 'GODOT_FILENAME';\
-bpy.ops.wm.open_mainfile(filepath=filename);\
-export_path = 'GODOT_EXPORT_PATH';\
-bpy.ops.export_scene.gltf(\
-filepath=export_path,\
-export_format='GLB',\
-export_colors=True,\
-export_all_influences=True,\
-export_extras=True,\
-export_cameras=True,\
-export_lights=True);\""""
+	var script : String = "import bpy;import os;import sys;bpy.ops.wm.open_mainfile(filepath='GODOT_FILENAME');bpy.ops.export_scene.gltf(filepath='GODOT_EXPORT_PATH',export_format='GLB',export_colors=True,export_all_influences=True,export_extras=True,export_cameras=True,export_lights=True);"
+	path_global = path_global.c_escape()
 	script = script.replace("GODOT_FILENAME", path_global)
+	output_path_global = output_path_global.c_escape()
 	script = script.replace("GODOT_EXPORT_PATH", output_path_global)
+	script = addon_path + " --background --python-expr \\\"" + script + "\\\""
 	var args = [
-		addon_path,
-		"--background",
+		"-c",
 		script]
-	var ret = OS.execute("blender", args, stdout, true)
+	print(args)
+	var ret = OS.execute("sh", args, stdout, true)
 	for line in stdout:
 		print(line)
 	if ret != 0:
