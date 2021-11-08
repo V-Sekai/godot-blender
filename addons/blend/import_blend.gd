@@ -58,7 +58,6 @@ export_lights=True);\""""
 		"--background",
 		script]
 	var ret = OS.execute("blender", args, stdout, true)
-	print(args)
 	for line in stdout:
 		print(line)
 	if ret != 0:
