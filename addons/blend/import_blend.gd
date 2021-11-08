@@ -62,7 +62,6 @@ bpy.ops.export_scene.gltf(\
 	var args = [
 		"--background",
 		"--python-expr \"GODOT_SCRIPT\"".replace("GODOT_SCRIPT", script)]
-	print(args)
 	var ret = OS.execute(addon_path, args, stdout, true)
 	for line in stdout:
 		print(line)
