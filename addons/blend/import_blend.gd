@@ -23,6 +23,17 @@
 @tool
 extends EditorSceneFormatImporter
 
+const settings_blender_path = "filesystem/import/blend/path"
+
+var blender_path : String
+
+func _init():
+	var path = ProjectSettings.get_setting(settings_blender_path)
+	if path == null:
+		ProjectSettings.set_setting(settings_blender_path, "blender")
+	else:
+		blender_path = path
+
 func _get_extensions():
 	return ["blend"]
 
@@ -38,17 +49,23 @@ func _import_scene(path: String, flags: int, bake_fps: int):
 	var output_path_global = ProjectSettings.globalize_path(output_path)
 	output_path_global = output_path_global.c_escape()
 	var stdout = [].duplicate()
-	var addon_path: String = "blender"
+	var addon_path: String = blender_path
+	var addon_path_global = ProjectSettings.globalize_path(addon_path)
 	var script : String = "import bpy;import os;import sys;bpy.ops.wm.open_mainfile(filepath='GODOT_FILENAME');bpy.ops.export_scene.gltf(filepath='GODOT_EXPORT_PATH',export_format='GLB',export_colors=True,export_all_influences=True,export_extras=True,export_cameras=True,export_lights=True);"
 	path_global = path_global.c_escape()
 	script = script.replace("GODOT_FILENAME", path_global)
 	output_path_global = output_path_global.c_escape()
-	script = script.replace("GODOT_EXPORT_PATH", output_path_global)
-	script = addon_path + " --background --python-expr \\\"" + script + "\\\""
+	script = script.replace("GODOT_EXPORT_PATH", output_path_global)		
+	var dir = Directory.new()
+	var tex_dir_global = output_path_global + "_textures"
+	tex_dir_global.c_escape()
+	dir.make_dir(tex_dir_global)
+	script = script.replace("GODOT_TEXTURE_PATH", tex_dir_global)	
+	script = addon_path_global + " --background --python-expr \\\"" + script + "\\\""
 	var args = [
 		"-c",
 		script]
-	print_verbose(args)
+	print(args)
 	var ret = OS.execute("sh", args, stdout, true)
 	for line in stdout:
 		print(line)
