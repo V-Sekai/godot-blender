@@ -33,7 +33,7 @@ func _get_import_flags():
 
 func _import_scene(path: String, flags: int, bake_fps: int):
 	var path_global : String = ProjectSettings.globalize_path(path)
-	var output_path : String = "res://.godot/imported/" + path.get_file().get_basename() + "-" + path.md5_text() + ".gltf" 
+	var output_path : String = "res://.godot/imported/" + path.get_file().get_basename() + "-" + path.md5_text() + ".glb" 
 	var output_path_global = ProjectSettings.globalize_path(output_path)
 	var stdout = [].duplicate()
 	var addon_path: String = "blender"
@@ -49,7 +49,7 @@ export_path = 'GODOT_EXPORT_PATH';\
 export_texture_dir = 'GODOT_TMP_PATH';\
 bpy.ops.export_scene.gltf(\
 	filepath=export_path,\
-	export_format='GLTF_SEPARATE',\
+	export_format='GLB',\
 	export_texture_dir=export_texture_dir,\
 	export_colors=True,\
 	export_all_influences=True,\
@@ -63,6 +63,7 @@ bpy.ops.export_scene.gltf(\
 		"--background",
 		"--python-expr \"GODOT_SCRIPT\"".replace("GODOT_SCRIPT", script)]
 	var ret = OS.execute(addon_path, args, stdout, true)
+	print(args)
 	for line in stdout:
 		print(line)
 	if ret != 0:
