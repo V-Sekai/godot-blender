@@ -48,10 +48,10 @@ func _import_scene(path: String, flags: int, bake_fps: int):
 	var args = [
 		"-c",
 		script]
-	print(args)
+	print_verbose(args)
 	var ret = OS.execute("sh", args, stdout, true)
 	for line in stdout:
-		print(line)
+		print_verbose(line)
 	if ret != 0:
 		print("Blender returned " + str(ret))
 		return null
