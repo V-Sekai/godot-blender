@@ -74,16 +74,3 @@ bpy.ops.export_scene.gltf(\
 	var root_node : Node = gltf.import_scene(output_path, 0, 1000.0, gstate)
 	root_node.name = path.get_basename().get_file()
 	return root_node
-
-
-func _import_animation_from_other_importer(path: String, flags: int, bake_fps: int):
-	return self._import_animation(path, flags, bake_fps)
-
-
-func _import_scene_from_other_importer(path: String, flags: int, bake_fps: int):
-	return self._import_scene(path, flags, bake_fps)
-
-
-
-
-
