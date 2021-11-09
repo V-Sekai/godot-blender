@@ -28,11 +28,7 @@ const settings_blender_path = "filesystem/import/blend/blender_path"
 var blender_path : String
 
 func _init():
-	var path = ProjectSettings.get_setting(settings_blender_path)
-	if path == null:
-		ProjectSettings.set_setting(settings_blender_path, "blender")
-	else:
-		blender_path = path
+	ProjectSettings.set_initial_value(settings_blender_path, "blender")
 
 func _get_extensions():
 	return ["blend"]
@@ -43,7 +39,6 @@ func _get_import_flags():
 
 
 func _import_scene(path: String, flags: int, bake_fps: int):
-	_init()
 	var path_global : String = ProjectSettings.globalize_path(path)
 	path_global = path_global.c_escape()
 	var output_path : String = "res://.godot/imported/" + path.get_file().get_basename() + "-" + path.md5_text() + ".glb"
