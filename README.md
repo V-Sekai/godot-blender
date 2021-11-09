@@ -7,6 +7,8 @@
 
 # How to use?
 
+**Has problems with Steam Godot Engine sandboxing**
+
 1. Install Blender.
 1. Go the project settings and change the Blender path.
 1. Blend!
