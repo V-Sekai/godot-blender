@@ -10,5 +10,6 @@
 **Has problems with Steam Godot Engine sandboxing**
 
 1. Install Blender.
-1. Go the project settings and change the Blender path.
-1. Save Blend files to the project folder.
+2. Open project in Godot Engine 4.0.
+3. Go the project settings and change the Blender path.
+4. Save Blend files to the project folder.
