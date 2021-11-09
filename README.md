@@ -25,9 +25,9 @@ _["Witchy #StylizedBustChallenge !" by Tyler Soo](https://skfb.ly/6WFNN) is lice
 
 You will need Godot 4.0 and Blender 2.93.5
 
-Beware: Godot Engine through Steam has sandboxing issues. Try official versions on [itch.io](https://godotengine.itch.io) or [Github](https://github.com/godotengine/godot/releases/tag/3.4-stable).
+You will need to use Godot 4.0 nightly or Github builds.
 
-1. Open this project in Godot Engine 3.4. (or add the `addons` directory to your project)
+1. Open this project in Godot Engine 4.0. (or add the `addons` directory to your project)
 2. May not be needed: Go to <kbd>Project Settings > Plugins</kbd> and make sure the plugin `Blend` is activated.
 3. May not be needed: Go to <kbd>Project Settings > General > Filesystem > Import > Blender</kbd> (or just search for `blender` at the top) and make sure the path to Blender is set. If Blender is in your global path (for example, if you use [scoop](https://scoop.sh/) to install Blender, or you are on Linux/Mac), you can just leave the default `blender`.
 4. Open Blender, and save Blend files to the project folder. Create one directory per file (materials will be extracted, and might conflict with other materials if you have more than one file).
