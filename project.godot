@@ -15,36 +15,12 @@ config/icon="res://icon.png"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/blend/plugin.cfg")
+enabled=PoolStringArray( "res://addons/blend/plugin.cfg" )
 
 [filesystem]
 
-import/fbx/use_fbx=false
 import/blend/blender_path="blender"
-
-[importer_defaults]
-
-scene={
-"_subresources": {
-},
-"animation/fps": 30.0,
-"animation/import": true,
-"import_script/path": "",
-"meshes/create_shadow_meshes": true,
-"meshes/ensure_tangents": true,
-"meshes/generate_lods": true,
-"meshes/light_baking": 2,
-"meshes/lightmap_texel_size": 0.1,
-"nodes/root_name": "Scene Root",
-"nodes/root_scale": 1.0,
-"nodes/root_type": "Node3D",
-"skins/use_named_skins": true
-}
 
 [physics]
 
 common/enable_pause_aware_picking=true
-
-[rendering]
-
-environment/default_environment="res://default_env.tres"

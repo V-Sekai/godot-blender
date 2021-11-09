@@ -1,6 +1,0 @@
-Godette_vrm_v4.vrm
-Original Godette model Copyright (C) SirRichard94
-https://github.com/SirRichard94/low-poly-godette
-Licensed under Creative Commons Attribution 3.0 Unported (CC-BY):
-https://github.com/SirRichard94/low-poly-godette/blob/4a4f910ccd74be8c46a440135de9a98bead9feb1/License
-VRM adaptation Copyright (C) 2021 Lyuma and licensed under the above terms (CC-BY)

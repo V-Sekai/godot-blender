@@ -20,8 +20,8 @@
 #	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #	SOFTWARE.
 
-@tool
-extends EditorSceneFormatImporter
+tool
+extends EditorSceneImporter
 
 const settings_blender_path = "filesystem/import/blend/blender_path"
 
@@ -39,14 +39,14 @@ func _get_extensions():
 
 
 func _get_import_flags():
-	return EditorSceneFormatImporter.IMPORT_SCENE
+	return EditorSceneImporter.IMPORT_SCENE
 
 
 func _import_scene(path: String, flags: int, bake_fps: int):
 	_init()
 	var path_global : String = ProjectSettings.globalize_path(path)
 	path_global = path_global.c_escape()
-	var output_path : String = "res://.godot/imported/" + path.get_file().get_basename() + "-" + path.md5_text() + ".glb"
+	var output_path : String = "res://.import/" + path.get_file() + "-" + path.md5_text() + ".glb"
 	var output_path_global = ProjectSettings.globalize_path(output_path)
 	output_path_global = output_path_global.c_escape()
 	var stdout = [].duplicate()
@@ -74,8 +74,8 @@ func _import_scene(path: String, flags: int, bake_fps: int):
 	var args = [
 		execute_string,
 		script]
-	print(args)
-	var ret = OS.execute(shell, args, stdout, true)
+	print(args)	
+	var ret = OS.execute(shell, args, true, stdout, true)
 	for line in stdout:
 		print(line)
 	if ret != 0:
@@ -83,7 +83,7 @@ func _import_scene(path: String, flags: int, bake_fps: int):
 		return null
 
 	var gstate : GLTFState = GLTFState.new()
-	var gltf : GLTFDocument = GLTFDocument.new()
-	var root_node : Node = gltf.import_scene(output_path, 0, 1000.0, gstate)
+	var gltf : PackedSceneGLTF = PackedSceneGLTF.new()
+	var root_node : Node = gltf.import_gltf_scene(output_path, 0, 1000.0, 2194432, gstate)
 	root_node.name = path.get_basename().get_file()
 	return root_node
