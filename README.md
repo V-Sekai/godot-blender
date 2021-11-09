@@ -9,7 +9,7 @@
 
 **Has problems with Steam Godot Engine sandboxing** Try https://godotengine.itch.io/ or https://github.com/godotengine/godot/releases/tag/3.4-stable.
 
-1. Install Blender.
+1. Install Blender 2.93.5.
 2. Open the project in Godot Engine 3.4.
 3. Go to the project settings and change the Blender path.
 4. Save Blend files to the project folder.
