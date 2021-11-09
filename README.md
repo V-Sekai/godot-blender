@@ -7,7 +7,7 @@
 
 # How to use it?
 
-**Has problems with Steam Godot Engine sandboxing** Try https://github.com/godotengine/godot.
+**Has problems with Steam Godot Engine sandboxing**. Try https://github.com/godotengine/godot.
 
 1. Install Blender 2.93.5.
 2. Open the project in Godot Engine 4.0.
