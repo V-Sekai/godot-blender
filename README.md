@@ -1,6 +1,6 @@
 # godot-blender
 
-![image](https://user-images.githubusercontent.com/32321/140888951-adb3bfd7-0bff-4845-a650-84a4710c8a69.png)
+![image](https://user-images.githubusercontent.com/32321/140889221-a1d5580b-8014-42e2-a09c-5d112917f6c0.png)
 
 https://sketchfab.com/3d-models/witchy-stylizedbustchallenge-0bcfa5fa15894f74a7d58eb3250a4b09
 
