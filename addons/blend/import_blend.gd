@@ -31,16 +31,15 @@ func _init():
 	if not ProjectSettings.has_setting(settings_blender_path):
 		ProjectSettings.set_initial_value(settings_blender_path, "blender")
 		ProjectSettings.set_setting(settings_blender_path, "blender")
-		var property_info = {
-			"name": settings_blender_path,
-			"type": TYPE_STRING,
-			"hint": PROPERTY_HINT_GLOBAL_FILE,
-			"hint_string": ""
-		}
-		ProjectSettings.add_property_info(property_info)
 	else:
 		blender_path = ProjectSettings.get_setting(settings_blender_path)
-		
+	var property_info = {
+		"name": settings_blender_path,
+		"type": TYPE_STRING,
+		"hint": PROPERTY_HINT_GLOBAL_FILE,
+		"hint_string": ""
+	}
+	ProjectSettings.add_property_info(property_info)
 
 
 func _get_extensions():
