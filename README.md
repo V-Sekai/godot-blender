@@ -2,7 +2,7 @@
 
 ![image](https://user-images.githubusercontent.com/32321/140889221-a1d5580b-8014-42e2-a09c-5d112917f6c0.png)
 
-https://sketchfab.com/3d-models/witchy-stylizedbustchallenge-0bcfa5fa15894f74a7d58eb3250a4b09
+"Witchy #StylizedBustChallenge !" (https://skfb.ly/6WFNN) by Tyler Soo is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 
 # How to use?
 
