@@ -11,4 +11,4 @@
 
 1. Install Blender.
 1. Go the project settings and change the Blender path.
-1. Blend!
+1. Save Blend files to the project folder.
