@@ -50,7 +50,7 @@ func _import_scene(path: String, flags: int, bake_fps: int):
 	var output_path_global = ProjectSettings.globalize_path(output_path)
 	output_path_global = output_path_global.c_escape()
 	var stdout = [].duplicate()
-	var addon_path: String = blender_path
+	var addon_path : String = blender_path
 	var addon_path_global = ProjectSettings.globalize_path(addon_path)
 	var script : String = "import bpy;import os;import sys;bpy.ops.wm.open_mainfile(filepath='GODOT_FILENAME');bpy.ops.export_scene.gltf(filepath='GODOT_EXPORT_PATH',export_format='GLB',export_colors=True,export_all_influences=True,export_extras=True,export_cameras=True,export_lights=True);"
 	path_global = path_global.c_escape()
