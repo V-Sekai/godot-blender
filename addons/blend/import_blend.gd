@@ -29,6 +29,14 @@ var blender_path : String
 
 func _init():
 	ProjectSettings.set_initial_value(settings_blender_path, "blender")
+	var property_info = {
+		"name": settings_blender_path,
+		"type": TYPE_STRING,
+		"hint": PROPERTY_HINT_GLOBAL_FILE,
+		"hint_string": ""
+	}
+	ProjectSettings.add_property_info(property_info)
+
 
 func _get_extensions():
 	return ["blend"]
