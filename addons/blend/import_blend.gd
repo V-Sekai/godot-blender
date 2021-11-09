@@ -56,25 +56,30 @@ func _import_scene(path: String, flags: int, bake_fps: int):
 	path_global = path_global.c_escape()
 	script = script.replace("GODOT_FILENAME", path_global)
 	output_path_global = output_path_global.c_escape()
-	script = script.replace("GODOT_EXPORT_PATH", output_path_global)		
+	script = script.replace("GODOT_EXPORT_PATH", output_path_global)
 	var dir = Directory.new()
 	var tex_dir_global = output_path_global + "_textures"
 	tex_dir_global.c_escape()
 	dir.make_dir(tex_dir_global)
-	script = script.replace("GODOT_TEXTURE_PATH", tex_dir_global)	
-	script = addon_path_global + " --background --python-expr \\\"" + script + "\\\""
-	
+	script = script.replace("GODOT_TEXTURE_PATH", tex_dir_global)
+
 	var shell = "sh"
 	var execute_string = "-c"
-	
+
+	var escape_left = "\\\""
+	var escape_right = "\\\""
+
 	if OS.get_name() == "Windows":
 		shell = "cmd.exe"
-		execute_string = "\\C"
-	
+		execute_string = "/C"
+		escape_left = "\""
+		escape_right = "\""
+	script = addon_path_global + " --background --python-expr " + escape_left + script + escape_right
+
 	var args = [
 		execute_string,
 		script]
-	print(args)	
+	print(args)
 	var ret = OS.execute(shell, args, true, stdout, true)
 	for line in stdout:
 		print(line)
@@ -87,3 +92,5 @@ func _import_scene(path: String, flags: int, bake_fps: int):
 	var root_node : Node = gltf.import_gltf_scene(output_path, 0, 1000.0, 2194432, gstate)
 	root_node.name = path.get_basename().get_file()
 	return root_node
+
+
