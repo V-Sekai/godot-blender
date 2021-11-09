@@ -41,6 +41,10 @@ scene={
 "skins/use_named_skins": true
 }
 
+[filesystem]
+
+import/blend/blender_path="blender"
+
 [physics]
 
 common/enable_pause_aware_picking=true
