@@ -21,7 +21,6 @@ _["Witchy #StylizedBustChallenge !" by Tyler Soo](https://skfb.ly/6WFNN) is lice
 - Add this addon to your Godot `addons` directory, activate it, and make sure the Blender path is correct in project settings.
 - Now Blender files in the project directory magically auto-import and auto-update
 
-
 **Longer Version**:
 
 You will need Godot 4.0 and Blender 2.93.5
