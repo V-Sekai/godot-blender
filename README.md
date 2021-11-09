@@ -1,6 +1,7 @@
 # godot-blender
 
-![image](https://user-images.githubusercontent.com/32321/140889221-a1d5580b-8014-42e2-a09c-5d112917f6c0.png)
+![editor_screenshot_2021-11-09T003406](https://user-images.githubusercontent.com/32321/140889856-720ed3bc-2a18-4ae1-94b9-aa82f407b907.png)
+
 
 "Witchy #StylizedBustChallenge !" (https://skfb.ly/6WFNN) by Tyler Soo is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 
