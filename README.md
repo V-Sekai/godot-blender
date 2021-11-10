@@ -26,7 +26,7 @@ You will need Godot 3.4 and Blender 2.93.5
 
 Beware: Godot Engine through Steam has sandboxing issues. Try official versions on [itch.io](https://godotengine.itch.io) or [Github](https://github.com/godotengine/godot/releases/tag/3.4-stable).
 
-Beware: Blender through Steam and others that have a space in the path need to be quoted `""`.  
+Beware: Blender through Steam and others that have a space in the path need to be quoted `""` in the Godot Project settings.
 
 1. Open this project in Godot Engine 3.4. (or add the `addons` directory to your project)
 2. May not be needed: Go to <kbd>Project Settings > Plugins</kbd> and make sure the plugin `Blend` is activated.
