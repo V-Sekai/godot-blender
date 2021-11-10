@@ -15,7 +15,7 @@ config/icon="res://icon.png"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/blend/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/blend/plugin.cfg", "res://addons/bvh/plugin.cfg" )
 
 [filesystem]
 

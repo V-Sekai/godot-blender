@@ -26,7 +26,7 @@ extends EditorPlugin
 var import_plugin
 
 func _enter_tree():
-	import_plugin = preload("res://addons/blend/import_bvh.gd").new()
+	import_plugin = preload("res://addons/bvh/import_bvh.gd").new()
 	add_scene_import_plugin(import_plugin)
 
 
