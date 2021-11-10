@@ -82,7 +82,7 @@ func _import_scene(path: String, flags: int, bake_fps: int):
 		execute_string = "/C"
 		escape_left = "\""
 		escape_right = "\""
-	script = addon_path_global + " --background --python-expr " + escape_left + script + escape_right
+	script = "\"" + addon_path_global + "\"" + " --background --python-expr " + escape_left + script + escape_right
 
 	var args = [
 		execute_string,
