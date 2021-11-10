@@ -23,9 +23,9 @@ _["Witchy #StylizedBustChallenge !" by Tyler Soo](https://skfb.ly/6WFNN) is lice
 
 **Longer Version**:
 
-You will need Godot 4.0 and Blender 2.93.5
+You will need Godot 4.0 nightly or Github builds and Blender 2.93.5
 
-You will need to use Godot 4.0 nightly or Github builds.
+Beware: Blender through Steam and others that have a space in the path need to be quoted `""`.  
 
 1. Open this project in Godot Engine 4.0. (or add the `addons` directory to your project)
 2. May not be needed: Go to <kbd>Project Settings > Plugins</kbd> and make sure the plugin `Blend` is activated.
