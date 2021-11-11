@@ -44,7 +44,7 @@ func _init():
 
 
 func _get_extensions():
-	return ["usdc"]
+	return ["usd", "usdc"]
 
 
 func _get_import_flags():
