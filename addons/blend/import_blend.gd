@@ -93,7 +93,7 @@ func _import_scene(path: String, flags: int, bake_fps: int):
 
 	var gstate : GLTFState = GLTFState.new()
 	var gltf : GLTFDocument = GLTFDocument.new()
-	var root_node : Node = gltf.import_scene(output_path, 0, 1000.0, gstate)
+	var root_node : Node = gltf.import_scene(output_path, flags, bake_fps, gstate)
 	root_node.name = path.get_basename().get_file()
 	return root_node
 
