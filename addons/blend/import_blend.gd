@@ -91,5 +91,5 @@ func _import_scene(path: String, flags: int, bake_fps: int):
 		print("Blender returned " + str(ret))
 		return null
 	var gltf_importer : EditorSceneFormatImporterGLTF = EditorSceneFormatImporterGLTF.new()
-	var root_node: Node3D = gltf_importer.import_scene_from_other_importer(output_path, flags, bake_fps, compression_flags)
+	var root_node: Node3D = gltf_importer._import_scene_from_other_importer(output_path, flags, bake_fps)
 	return root_node
