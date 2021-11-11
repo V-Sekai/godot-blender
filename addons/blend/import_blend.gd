@@ -55,9 +55,9 @@ func _import_scene(path: String, flags: int, bake_fps: int):
 	import_config_file.load(path + ".import")
 	var compression_flags: int = import_config_file.get_value("params", "meshes/compress", 0)
 	# ARRAY_COMPRESS_BASE = (ARRAY_INDEX + 1)
-	compression_flags = compression_flags << (VisualServer.ARRAY_INDEX + 1)
+	compression_flags = compression_flags << (RenderingServer.ARRAY_INDEX + 1)
 	if import_config_file.get_value("params", "meshes/octahedral_compression", false):
-		compression_flags |= VisualServer.ARRAY_FLAG_USE_OCTAHEDRAL_COMPRESSION
+		compression_flags |= RenderingServer.ARRAY_FLAG_USE_OCTAHEDRAL_COMPRESSION
 
 	var path_global : String = ProjectSettings.globalize_path(path)
 	path_global = path_global.c_escape()
@@ -84,7 +84,7 @@ func _import_scene(path: String, flags: int, bake_fps: int):
 		"--python-expr",
 		script]
 	print(args)
-	var ret = OS.execute(shell, args, stdout, true)
+	var ret = OS.execute(blender_path, args, stdout, true)
 	for line in stdout:
 		print(line)
 	if ret != 0:
