@@ -1,5 +1,11 @@
 # godot-blender-importer
 
+**THIS BRANCH WAS MOVED TO GODOT CORE**
+
+**LEFT FOR HISTORICAL RECORD**
+
+See https://github.com/godotengine/godot/pull/54886
+
 ## Blender Importer Addon for Godot
 
 This addon for Godot will automatically import any `.blend` file in your project directory.
