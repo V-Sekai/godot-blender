@@ -39,3 +39,12 @@ If you change your Blender file, remember to close your inherited scene in Godot
 
 - It seems the editor can sometimes hang on exit if scenes are left open and unsaved
 - If a scene is open, and the blend file is updated in blender, changes will not be reflected until the scene is reopened (known Godot limitation)
+
+## See also
+
+* https://github.com/rcorre/godot_blender_importer
+* https://github.com/godotengine/godot-proposals/issues/3529
+* https://github.com/godotengine/godot/pull/54886
+* https://github.com/V-Sekai/godot-blender (This project.)
+* https://github.com/V-Sekai/godot-bvh
+* https://github.com/V-Sekai/godot-usd
