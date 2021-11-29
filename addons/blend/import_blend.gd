@@ -80,17 +80,21 @@ func _import_scene(path: String, flags: int, bake_fps: int):
 	]
 	var script : String = "import bpy; bpy.ops.export_scene.gltf(%s)" % params.join(",")
 	path_global = path_global.c_escape()
-	var args = [
+	var args = PoolStringArray([
 		path_global,
 		"--background",
 		"--python-expr",
-		script]
-	print(args)
+		script
+	])
 	var ret = OS.execute(addon_path_global, args, true, stdout, true)
-	for line in stdout:
-		print(line)
-	if ret != 0:
-		print("Blender returned " + str(ret))
+	if ret != OK:
+		push_error(
+			"Blender import failed with code=%d.\nCommand: %s\nOutput: %s" % [
+				ret,
+				args.join(" "),
+				PoolStringArray(stdout).join("\n")
+			]
+		)
 		return null
 
 	var root_node: Spatial = null
