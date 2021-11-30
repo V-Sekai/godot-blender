@@ -65,8 +65,9 @@ func _import_scene(path: String, flags: int, bake_fps: int):
 	var output_path_global = ProjectSettings.globalize_path(output_path)
 	output_path_global = output_path_global.c_escape()
 	var stdout = [].duplicate()
+	var addon_path : String = blender_path
 	var addon_path_global = ProjectSettings.globalize_path(addon_path)
-	var params: PoolStringArray = [
+	var params: PackedStringArray = [
 		"filepath='%s'" % output_path_global,
 		"export_format='GLB'",
 		"export_colors=True",
@@ -76,24 +77,24 @@ func _import_scene(path: String, flags: int, bake_fps: int):
 		"export_lights=True",
 		"export_apply=(len(bpy.data.shape_keys)==0)"
 	]
-	var script : String = "import bpy; bpy.ops.export_scene.gltf(%s)" % params.join(",")
+	var script : String = "import bpy; bpy.ops.export_scene.gltf(%s)" % ",".join(params)
 	path_global = path_global.c_escape()
-	var args = PoolStringArray([
+	var args = PackedStringArray([
 		path_global,
 		"--background",
 		"--python-expr",
 		script
 	])
-	var ret = OS.execute(addon_path_global, args, true, stdout, true)
+	var ret = OS.execute(addon_path_global, args, stdout, true)
 	if ret != OK:
 		push_error(
 			"Blender import failed with code=%d.\nCommand: %s\nOutput: %s" % [
 				ret,
-				args.join(" "),
-				PoolStringArray(stdout).join("\n")
+				" ".join(args),
+				"\n".join(stdout)
 			]
 		)
 		return null
 	var gltf_importer : EditorSceneFormatImporterGLTF = EditorSceneFormatImporterGLTF.new()
-	var root_node: Node3D = gltf_importer._import_scene_from_other_importer(output_path, flags, bake_fps)
+	var root_node: Node3D = gltf_importer.import_scene_from_other_importer(output_path, flags, bake_fps)
 	return root_node
