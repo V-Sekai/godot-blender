@@ -68,28 +68,33 @@ func _import_scene(path: String, flags: int, bake_fps: int):
 	var stdout = [].duplicate()
 	var addon_path : String = blender_path
 	var addon_path_global = ProjectSettings.globalize_path(addon_path)
-	var script : String = ("import bpy, os, sys;" +
-		"bpy.ops.wm.open_mainfile(filepath='GODOT_FILENAME');" +
-		"bpy.ops.export_scene.gltf(filepath='GODOT_EXPORT_PATH',export_format='GLB',export_colors=True,export_all_influences=False,export_extras=True,export_cameras=True,export_lights=True);")
+	var params: PoolStringArray = [
+		"filepath='%s'" % output_path_global,
+		"export_format='GLB'",
+		"export_colors=True",
+		"export_all_influences=False",
+		"export_extras=True",
+		"export_cameras=True",
+		"export_lights=True",
+		"export_apply=(len(bpy.data.shape_keys)==0)"
+	]
+	var script : String = "import bpy; bpy.ops.export_scene.gltf(%s)" % params.join(",")
 	path_global = path_global.c_escape()
-	script = script.replace("GODOT_FILENAME", path_global)
-	output_path_global = output_path_global.c_escape()
-	script = script.replace("GODOT_EXPORT_PATH", output_path_global)
-	var dir = Directory.new()
-	var tex_dir_global = output_path_global + "_textures"
-	tex_dir_global.c_escape()
-	dir.make_dir(tex_dir_global)
-	script = script.replace("GODOT_TEXTURE_PATH", tex_dir_global)
-	var args = [
+	var args = PoolStringArray([
+		path_global,
 		"--background",
 		"--python-expr",
-		script]
-	print(args)
+		script
+	])
 	var ret = OS.execute(addon_path_global, args, true, stdout, true)
-	for line in stdout:
-		print(line)
-	if ret != 0:
-		print("Blender returned " + str(ret))
+	if ret != OK:
+		push_error(
+			"Blender import failed with code=%d.\nCommand: %s\nOutput: %s" % [
+				ret,
+				args.join(" "),
+				PoolStringArray(stdout).join("\n")
+			]
+		)
 		return null
 
 	var root_node: Spatial = null
@@ -98,5 +103,3 @@ func _import_scene(path: String, flags: int, bake_fps: int):
 	else:
 		root_node = call("import_scene_from_other_importer", output_path, flags, bake_fps, compression_flags)
 	return root_node
-
-
