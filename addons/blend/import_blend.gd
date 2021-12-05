@@ -29,9 +29,8 @@ var blender_path : String
 
 func _init():
 	if not ProjectSettings.has_setting(settings_blender_path):
-		ProjectSettings.set_initial_value(settings_blender_path, "blender")
 		ProjectSettings.set_setting(settings_blender_path, "blender")
-
+		ProjectSettings.set_initial_value(settings_blender_path, "blender")
 	else:
 		blender_path = ProjectSettings.get_setting(settings_blender_path)
 	var property_info = {
