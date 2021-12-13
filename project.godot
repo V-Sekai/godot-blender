@@ -6,12 +6,13 @@
 ;   [section] ; section goes between []
 ;   param=value ; assign values to parameters
 
-config_version=4
+config_version=5
 
 [application]
 
 config/name="Blender Game Project"
 config/icon="res://icon.png"
+config/features=PackedStringArray("4.0")
 
 [editor_plugins]
 
@@ -20,7 +21,7 @@ enabled=PackedStringArray("res://addons/blend/plugin.cfg")
 [filesystem]
 
 import/fbx/use_fbx=false
-import/blend/blender_path="blender"
+import/blend/blender_path="C:\\Users\\elee\\scoop\\persist\\steam\\steamapps\\common\\Blender\\blender.exe"
 
 [importer_defaults]
 

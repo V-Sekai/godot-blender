@@ -61,7 +61,7 @@ func _import_scene(path: String, flags: int, bake_fps: int):
 
 	var path_global : String = ProjectSettings.globalize_path(path)
 	path_global = path_global.c_escape()
-	var output_path : String = "res://.godot/imported/" + path.get_file().get_basename() + "-" + path.md5_text() + ".glb"
+	var output_path : String = "res://.godot/imported/" + path.get_file().get_basename() + "-" + path.md5_text() + ".gltf"
 	var output_path_global = ProjectSettings.globalize_path(output_path)
 	output_path_global = output_path_global.c_escape()
 	var stdout = [].duplicate()
@@ -69,21 +69,23 @@ func _import_scene(path: String, flags: int, bake_fps: int):
 	var addon_path_global = ProjectSettings.globalize_path(addon_path)
 	var params: PackedStringArray = [
 		"filepath='%s'" % output_path_global,
-		"export_format='GLB'",
+		"export_format='GLTF_SEPARATE'",
 		"export_colors=True",
+		"export_keep_originals=True",
 		"export_all_influences=True",
 		"export_extras=True",
 		"export_cameras=True",
 		"export_lights=True",
 		"export_apply=(len(bpy.data.shape_keys)==0)"
 	]
-	var script : String = "import bpy; bpy.ops.export_scene.gltf(%s)" % ",".join(params)
-	path_global = path_global.c_escape()
+	var script : String = "import bpy;bpy.ops.file.unpack_all(method='USE_LOCAL');bpy.ops.export_scene.gltf(%s)" % ",".join(params)
+	addon_path_global = addon_path_global.c_escape()
 	var args = PackedStringArray([
-		path_global,
+		addon_path_global,
 		"--background",
 		"--python-expr",
-		script
+		script,
+		path_global
 	])
 	var ret = OS.execute(addon_path_global, args, stdout, true)
 	if ret != OK:
