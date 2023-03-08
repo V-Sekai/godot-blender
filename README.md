@@ -1,5 +1,7 @@
 # godot-blender-importer
 
+This now a built-in feature of Godot Engine 4.0.
+
 ## Blender Importer Addon for Godot
 
 This addon for Godot will automatically import any `.blend` file in your project directory.
